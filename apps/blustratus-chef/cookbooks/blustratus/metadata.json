@@ -1,0 +1,110 @@
+{
+  "name": "blustratus",
+  "description": "Installs/Configures blustratus",
+  "long_description": "imcloud_client Cookbook\n=======================\nTODO: Enter the cookbook description here.\n\ne.g.\nThis cookbook makes your favorite breakfast sandwhich.\n\nRequirements\n------------\nTODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.\n\ne.g.\n#### packages\n- `toaster` - imcloud_client needs toaster to brown your bagel.\n\nAttributes\n----------\nTODO: List you cookbook attributes here.\n\ne.g.\n#### imcloud_client::default\n<table>\n  <tr>\n    <th>Key</th>\n    <th>Type</th>\n    <th>Description</th>\n    <th>Default</th>\n  </tr>\n  <tr>\n    <td><tt>['imcloud_client']['bacon']</tt></td>\n    <td>Boolean</td>\n    <td>whether to include bacon</td>\n    <td><tt>true</tt></td>\n  </tr>\n</table>\n\nUsage\n-----\n#### imcloud_client::default\nTODO: Write usage instructions for each cookbook.\n\ne.g.\nJust include `imcloud_client` in your node's `run_list`:\n\n```json\n{\n  \"name\":\"my_node\",\n  \"run_list\": [\n    \"recipe[imcloud_client]\"\n  ]\n}\n```\n\nContributing\n------------\nTODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.\n\ne.g.\n1. Fork the repository on Github\n2. Create a named feature branch (like `add_component_x`)\n3. Write you change\n4. Write tests for your change (if applicable)\n5. Run the tests, ensuring they all pass\n6. Submit a Pull Request using Github\n\nLicense and Authors\n-------------------\nAuthors: TODO: List authors\n",
+  "maintainer": "IBM",
+  "maintainer_email": "imcloud@ca.ibm.com",
+  "license": "All rights reserved",
+  "platforms": {
+  },
+  "dependencies": {
+    "php": ">= 0.0.0",
+    "imcloud_client": ">= 0.0.0",
+    "imcloud_tools": ">= 0.0.0",
+    "dc_logger": ">= 0.0.0",
+    "db2": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "db2/ip": {
+      "display_name": "DB2 IP",
+      "description": "The IP of DB2. (Set to ENV:PUBLIC_IP).",
+      "required": "required",
+      "type": "string",
+      "recipes": [
+        "blustratus::setup_web_console",
+        "blustratus::setup_firstboot_for_db2_php_site"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false
+    },
+    "cognos/ip": {
+      "display_name": "Cognos IP",
+      "description": "The IP of Cognos. Set to (ENV:PUBLIC_IP).",
+      "required": "required",
+      "type": "string",
+      "recipes": [
+        "blustratus::setup_web_console"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false
+    },
+    "console/install/path": {
+      "display_name": "Web Console Install Path",
+      "description": "Web Console Install Path.",
+      "required": "recommended",
+      "default": "/opt/ibm/dsserver",
+      "recipes": [
+        "blustratus::setup_web_console"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "console/config_prefix": {
+      "display_name": "Web Console Config Prefix",
+      "description": "Web Console Config Prefix.",
+      "required": "recommended",
+      "default": "/opt/ibm/dsserver",
+      "recipes": [
+        "blustratus::setup_web_console"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "console/metadb/directory": {
+      "display_name": "Web Console METADB Directory",
+      "description": "Web Console METADB Direcory.",
+      "required": "recommended",
+      "default": "/home/db2inst1",
+      "recipes": [
+        "blustratus::setup_web_console"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "blustratus::default": "Installs blustratus.",
+    "blustratus::configure_os": "Configure OS for Blu Stratus.",
+    "blustratus::configure_db2": "Configure DB2 for Blu Stratus.",
+    "blustratus::setup_ibm_java_7_jre": "Install IBM Java 7 JRE.",
+    "blustratus::install_ibm_data_architect": "Install IBM Data Architect.",
+    "blustratus::setup_web_console": "Setup Blu Stratus Web Console.",
+    "blustratus::setup_firstboot_for_db2_php_site": "Setup firstboot for DB2 PHP Site."
+  },
+  "version": "0.1.0"
+}
