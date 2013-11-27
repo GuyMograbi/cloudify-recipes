@@ -58,7 +58,7 @@ else
       u = node[:db2][user_type]
   
   	group u[:group] do
-        gid u[:gid].to_i if u.available? :gid
+        #gid u[:gid].to_i if u.available? :gid
         action :create
       end
   
