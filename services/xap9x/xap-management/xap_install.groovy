@@ -31,7 +31,7 @@ new AntBuilder().sequential {
 // Update gs ui port
 if(ServiceUtils.isWindows()){
   new AntBuilder().sequential {
-   replace(file:"${context.serviceDirectory}/${config.installDir}/${config.xapDir}/tools/gs-webui/gs-webui.sh",token:"8099",value:"${config.uiPort}")
+   replace(file:"${context.serviceDirectory}/${config.installDir}/${config.xapDir}/tools/gs-webui/gs-webui.bat",token:"8099",value:"${config.uiPort}")
   }
 }
 else{

@@ -32,7 +32,7 @@ The recipe provides several custom commands:
 <dt>deploy-pu</dt>
 <dd> Deploys a stateful/grid processing unit.  Usage: <i>deploy-pu puurl schema partitions backups max-per-vm max-per-machine name</i>.  Arguments (all args are required):
 <ul>
-<li><i>name</i>: The deployd name for the processing unit.  Defaults to the pu file name unless overridden.</li>
+<li><i>name</i>: The deploy name for the processing unit.  Defaults to the pu file name unless overridden.</li>
 <li><i>puurl</i>: A URL where the processing unit jar can be found</li>
 <li><i>schema</i>: The cluster schema (e.g. partitioned-sync2backup)</li>
 <li><i>partitions</i>: The number of partitions. Ignored if not partitioned.</li>
