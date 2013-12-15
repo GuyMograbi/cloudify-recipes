@@ -19,23 +19,4 @@ service {
 		// Chef server does NOT support 32bit !!!
         template "MEDIUM_UBUNTU"
     }
-  lifecycle{
-	postStart {
-            if(binding.variables["chefRepos"]){
-		chefRepos.each(){ repo -> 
-			chef_loader = ChefLoader.get_loader(repo.repo_type)
-               		chef_loader.initialize()
-	                chef_loader.fetch(repo.url, repo.inner_path)
-                	chef_loader.upload()
-		}
-            } else if (binding.variables["chefRepo"]) {		
-                chef_loader = ChefLoader.get_loader(chefRepo.repo_type)
-                chef_loader.initialize()
-                chef_loader.fetch(chefRepo.url, chefRepo.inner_path)
-                chef_loader.upload()
-            } else {
-                ChefLoader.get_loader().initialize()
-            }
-        }
-  }
 }

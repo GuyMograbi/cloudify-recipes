@@ -21,7 +21,7 @@ service {
     numInstances 1
 
     compute {
-        template "MEDIUM_RH"
+        template "SMALL_LINUX_BMI"
     }
 
     lifecycle {
