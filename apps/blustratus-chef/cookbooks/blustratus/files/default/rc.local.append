@@ -1,4 +1,0 @@
-echo "0 `hostname` 0" > /home/db2inst1/sqllib/db2nodes.cfg
-su - db2inst1 -c db2start
-su - db2inst1 -c "db2 connect to CM; db2 connect reset"
-touch /var/www/ready
