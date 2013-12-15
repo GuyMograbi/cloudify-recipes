@@ -27,7 +27,7 @@ application {
     }*/
     
     service {
-        name = "db2"
+        name = "blustratus-single"
         dependsOn = ["chef-server"]
     }
     

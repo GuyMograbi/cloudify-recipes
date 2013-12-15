@@ -1,5 +1,6 @@
 default[:db2][:version]             = "10.5.1"
 default[:db2][:edition]             = "Enterprise"
+default[:db2][:license]             = "awse_c"
 
 default[:db2][:download_name]       = "DB2 #{default[:db2][:edition]} #{default[:db2][:version]}"
 

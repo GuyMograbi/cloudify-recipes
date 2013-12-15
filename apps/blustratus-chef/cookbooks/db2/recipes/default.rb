@@ -26,8 +26,12 @@ else
   gem_package "ruby-shadow" do
     action :install
   end
-  yum_package "pam.i686" do
-    version "1.1.1-13.el6"
+#  yum_package "pam.i686" do
+#    version "1.1.1-13.el6"
+#	action :install
+#  end
+  yum_package "pam" do
+	arch "i686"
 	action :install
   end
 end
@@ -57,7 +61,7 @@ else
     [:instance, :fenced, :das].each do |user_type|
       u = node[:db2][user_type]
   
-      group u[:group] do
+  	group u[:group] do
         gid u[:gid].to_i if u.available? :gid
         action :create
       end
@@ -121,14 +125,15 @@ else
     group node[:db2][:instance][:group]
   end
   
-   
-  licence_file = "/tmp/db2#{node[:db2][:license]}.lic"
+
   unless node[:db2][:license].nil?
+    licence_file = "/tmp/db2#{node[:db2][:license]}.lic"
     cookbook_file licence_file
   
     bash "Update DB2 License" do
-      command "db2licm -a #{licence_file}"
-      user node[:db2][:instance][:username]
+      code <<-EOH
+	    su - #{node[:db2][:instance][:username]} -c "db2licm -a #{licence_file}"
+	  EOH
     end
   end
    

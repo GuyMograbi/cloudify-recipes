@@ -14,7 +14,6 @@ when "debian", "ubuntu"
   exit 1
 else
   yum_package "libstdc++" do
-    version "4.4.7-3.el6"
 	arch "i686"
 	action :install
   end
@@ -35,4 +34,10 @@ file "Delete IBM JAVA media" do
   backup false
   path lazy { node[:imcloud_client][:return] }
   action :delete
+end
+
+bash "Update java alternatives" do
+  code <<-EOH
+    update-alternatives --install /usr/bin/java java /opt/ibm/java-x86_64-70/jre/bin/java 1
+  EOH
 end

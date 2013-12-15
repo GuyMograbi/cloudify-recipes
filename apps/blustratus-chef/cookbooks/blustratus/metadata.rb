@@ -13,8 +13,9 @@ depends 'imcloud_tools'
 depends 'dc_logger'
 depends 'db2'
 depends 'cognos_bi'
-depends 'openldap'
+#depends 'openldap'
 
+depends 'ruby_build'
 
 recipe "blustratus::default", "Installs blustratus."
 recipe "blustratus::configure_os", "Configure OS for Blu Stratus."
@@ -24,7 +25,11 @@ recipe "blustratus::install_ibm_data_architect", "Install IBM Data Architect."
 recipe "blustratus::setup_web_console", "Setup Blu Stratus Web Console."
 recipe "blustratus::setup_firstboot_for_db2_php_site", "Setup firstboot for DB2 PHP Site."
 recipe "blustratus::configure_and_start_web_console", "Configure and start Blu Stratus Web Console."
-
+recipe "blustratus::callback", "Callback to server."
+recipe "blustratus::create_storage", "Sets up the iSCSI storage (expand to EBS)."
+recipe "blustratus::create_and_activate_swap", "Create and activate swap"
+recipe "blustratus::setup_bootstrap_site", "Setup Rails bootstrap site"
+recipe "blustratus::install_and_configure_r", "Install and configure R"
 
 
 attribute "db2/ip",

@@ -1275,7 +1275,7 @@ Master configuration file for all IBM Cognos components.
         <!-- BLU_LDAP: Defines a group of properties that allows the product to access an LDAP
              server for user authentication.  -->
         <!-- Use this group of properties to provide access to an existing LDAP server.  -->
-        <crn:instance name="BLU_LDAP" class="LDAP_AD">
+        <crn:instance name="BLU_LDAP" class="LDAP">
           <!-- id: Specifies a unique identifier for the authentication namespace.  -->
           <!-- Use the namespace identifier to distinguish between multiple namespaces. Each namespace
                must have a unique identifier. When you select a namespace to use for authentication
@@ -1292,14 +1292,14 @@ Master configuration file for all IBM Cognos components.
                for your computer that your DNS is set up to resolve it. Otherwise, you can also
                use the IP address.  -->
           <crn:parameter name="connection">
-            <crn:value xsi:type="cfg:hostPort">localhost:389</crn:value>
+            <crn:value xsi:type="cfg:hostPort"><%= node[:ldap][:ip] %>:<%= node[:ldap][:port] %></crn:value>
           </crn:parameter>
           <!-- baseDN: Specifies the base distinguished name of the LDAP server.  -->
           <!-- The product uses the base DN to identify the top level of your directory server structure.
                The root of the hierarchal directory structure is the starting place for all searches.
                You restrict searches by specifying a base DN.  -->
           <crn:parameter name="baseDN">
-            <crn:value xsi:type="xsd:string">ou=People,dc=blustratus,dc=com</crn:value>
+            <crn:value xsi:type="xsd:string">dc=blustratus,dc=com</crn:value>
           </crn:parameter>
           <!-- userLookup: Specifies the user lookup used for binding to the LDAP directory server.  -->
           <!-- Use this property to specify the string that is used to construct the fully qualified
@@ -1313,7 +1313,7 @@ Master configuration file for all IBM Cognos components.
                For example, '(userPrincipalName=${userID})'. A filter should be used if you have
                a hierarchical directory structure.  -->
           <crn:parameter name="userLookup">
-            <crn:value xsi:type="xsd:string">uid=${userID}</crn:value>
+            <crn:value xsi:type="xsd:string">(uid=${userID})</crn:value>
           </crn:parameter>
           <!-- useExternalIdentity: Specifies whether to use the identity from an external source
                for user authentication.  -->
@@ -1350,7 +1350,7 @@ Master configuration file for all IBM Cognos components.
             <crn:value xsi:type="cfg:credential">
               <credential>
                 <username>cn=bluldap,dc=blustratus,dc=com</username>
-                <password>Blue4ibm</password>
+                <password><%= node[:ldap][:password] %></password>
               </credential>
             </crn:value>
           </crn:parameter>
@@ -1396,7 +1396,7 @@ Master configuration file for all IBM Cognos components.
                If the 'dn' is used, more resources are used as you search deeper in the LDAP directory
                server hierarchy and policies may be affected if the 'dn' is renamed.  -->
           <crn:parameter name="camidAttribute">
-            <crn:value xsi:type="xsd:string">uid</crn:value>
+            <crn:value xsi:type="xsd:string">dn</crn:value>
           </crn:parameter>
           <!-- dataEncoding: Specifies the encoding of the data stored in the LDAP directory server.  -->
           <!-- If this property is set to an encoding other than UTF-8, then the data is converted
@@ -1444,7 +1444,7 @@ Master configuration file for all IBM Cognos components.
           </crn:parameter>
           <!-- groupMembers: Specifies the LDAP attribute used to identify the members of a group.  -->
           <crn:parameter name="groupMembers">
-            <crn:value xsi:type="xsd:string">memberuid</crn:value>
+            <crn:value xsi:type="xsd:string">memberUid</crn:value>
           </crn:parameter>
           <!-- groupName: Specifies the LDAP attribute used for the "name" property of a group.  -->
           <crn:parameter name="groupName">
@@ -1463,7 +1463,7 @@ Master configuration file for all IBM Cognos components.
           <!-- accountContentLocale: Specifies the LDAP attribute used for the "contentLocale" property
                for an account.  -->
           <crn:parameter name="accountContentLocale">
-            <crn:value xsi:type="xsd:string"></crn:value>
+            <crn:value xsi:type="xsd:string">preferredlanguage</crn:value>
           </crn:parameter>
           <!-- accountDescription: Specifies the LDAP attribute used for the "description" property
                for an account.  -->
@@ -1506,7 +1506,7 @@ Master configuration file for all IBM Cognos components.
           <!-- accountPassword: Specifies the LDAP attribute used for the "password" property for
                an account.  -->
           <crn:parameter name="accountPassword">
-            <crn:value xsi:type="xsd:string">unicodePwd</crn:value>
+            <crn:value xsi:type="xsd:string">userPassword</crn:value>
           </crn:parameter>
           <!-- accountPostalAddress: Specifies the LDAP attribute used for the "postalAddress" property
                for an account.  -->
@@ -1516,7 +1516,7 @@ Master configuration file for all IBM Cognos components.
           <!-- accountProductLocale: Specifies the LDAP attribute used for the "productLocale" property
                for an account.  -->
           <crn:parameter name="accountProductLocale">
-            <crn:value xsi:type="xsd:string"></crn:value>
+            <crn:value xsi:type="xsd:string">preferredlanguage</crn:value>
           </crn:parameter>
           <!-- accountSurname: Specifies the LDAP attribute used for the "surname" property for
                an account.  -->
@@ -1526,7 +1526,7 @@ Master configuration file for all IBM Cognos components.
           <!-- accountUserName: Specifies the LDAP attribute used for the "userName" property for
                an account.  -->
           <crn:parameter name="accountUserName">
-            <crn:value xsi:type="xsd:string">sAMAccountName</crn:value>
+            <crn:value xsi:type="xsd:string">uid</crn:value>
           </crn:parameter>
           <!-- customProperties: Specifies a set of custom properties.  -->
           <!-- Use this set of custom properties to define additional account information.  -->

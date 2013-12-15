@@ -7,33 +7,23 @@
 # All rights reserved - Do Not Redistribute
 #
 
-#
-# Configure OS for BLU Stratus
-#
+bash "Update ulimit for all users" do
+  code <<-EOH
+    echo "* soft nofile 65535" >> /etc/security/limits.conf
+    echo "* hard nofile 65535" >> /etc/security/limits.conf
+    echo "* soft sigpending 1032252" >> /etc/security/limits.conf
+    echo "* hard sigpending 1032252" >> /etc/security/limits.conf
+    echo "* soft memlock unlimited" >> /etc/security/limits.conf
+    echo "* hard memlock unlimited" >> /etc/security/limits.conf
+    echo "* soft stack unlimited" >> /etc/security/limits.conf
+    echo "* hard stack unlimited" >> /etc/security/limits.conf
+    echo "* soft nproc unlimited" >> /etc/security/limits.conf
+    echo "* hard nproc unlimited" >> /etc/security/limits.conf
 
-# Increase system limits
-#echo "
-#* soft nofile 65535
-#* hard nofile 65535
-#
-#* soft sigpending 1032252
-#* hard sigpending 1032252
-#
-#* soft memlock unlimited
-#* hard memlock unlimited
-#
-#* soft stack unlimited
-#* hard stack unlimited
-#
-#* soft nproc unlimited
-#* hard nproc unlimited" >> /etc/security/limits.conf
-
-#directory "/mnt/ephemeral/opt/ibm" do
-#  recursive true
-#  mode 0755
-#  action :create
-#end
-
-#link "/opt/ibm" do
-#  to "/mnt/ephemeral/opt/ibm"
-#end
+    echo "ulimit -n 65535" >> /etc/bashrc
+    echo "ulimit -i 1032252" >> /etc/bashrc
+    echo "ulimit -l unlimited" >> /etc/bashrc
+    echo "ulimit -s unlimited" >> /etc/bashrc
+    echo "ulimit -u unlimited" >> /etc/bashrc
+  EOH
+end

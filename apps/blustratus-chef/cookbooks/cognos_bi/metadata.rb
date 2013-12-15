@@ -10,6 +10,7 @@ depends 'imcloud_client'
 depends 'imcloud_tools'
 depends 'dc_logger'
 depends 'db2'
+depends 'blustratus'
 
 supports "redhat"
 

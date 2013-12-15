@@ -61,7 +61,7 @@ DB2.FENCED_HOME_DIRECTORY = <%= node[:db2][:fenced][:home_dir] %>
 DB2.FENCED_PASSWORD       = <%= node[:db2][:fenced][:password] %>
 
 * ----------------------------------------------------------------------------
-DB2.DIAGPATH              = <%= node[:db2][:data_path] %>/log
+DB2.DIAGPATH              = <%= node[:db2][:log_path] %>
 DB2.DFTDBPATH             = <%= node[:db2][:data_path] %>
 
 * ----------------------------------------------------------------------------

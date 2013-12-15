@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-DC_LOGGER_GEM = "/tmp/dc_logger_client-0.1.1.gem"
+DC_LOGGER_GEM = "/tmp/dc_logger_client-0.1.2.gem"
 
 include_recipe "build-essential"
 

@@ -13,13 +13,13 @@ recipe "imcloud_dns::update_record", "Update a DNS record."
 
 attribute "cloud/access_key_id",
    :display_name => "AWS Access Key ID",
-   :description => "Set to CRED:AWS_ACCESS_KEY_ID.",
+   :description => "",
    :required => "required",
    :recipes => ["imcloud_dns::create_record", "imcloud_dns::delete_record", "imcloud_dns::update_record"]
 
 attribute "cloud/secret_access_key",
    :display_name => "AWS SECRET Access Key",
-   :description => "Set to CRED:AWS_SECRET_ACCESS_KEY.",
+   :description => "",
    :required => "required",
    :recipes => ["imcloud_dns::create_record", "imcloud_dns::delete_record", "imcloud_dns::update_record"]
    
@@ -54,6 +54,6 @@ attribute "dns/ttl",
    
 attribute "dns/ip_address",
    :display_name => "DNS Record IP",
-   :description => "The DNS Record IP Address you want to create. Often this is set to: ENV:EC2_PUBLIC_IPV4.",
+   :description => "The DNS Record IP Address you want to create.",
    :required => "required",
    :recipes => ["imcloud_dns::create_record", "imcloud_dns::update_record"]

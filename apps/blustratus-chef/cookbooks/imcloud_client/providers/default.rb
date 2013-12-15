@@ -29,6 +29,8 @@ action :download do
 	  require 'rubygems'
       require 'imcloud_client'
 	  
+	  puts new_resource.api_key.inspect
+	  
       IMCloudClient.configure do |config|
         config.api_key = new_resource.api_key if new_resource.api_key
         config.api_url = new_resource.api_url if new_resource.api_url

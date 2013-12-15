@@ -7,9 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-chef_gem "aws-sdk" do
-  action :install
-end
+yum_package     "ruby-devel"
 
 # Install for Chef
 gem_package "aws-sdk" do
