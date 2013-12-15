@@ -1,0 +1,56 @@
+#!/bin/bash
+# chkconfig: 2345 95 20
+# rails          Start Rails
+#
+# description: Start Rails
+# processname: rails 
+
+### BEGIN INIT INFO
+# Provides: rails
+# Short-Description: Start Rails
+# Description:       This starts Rails
+#
+### END INIT INFO
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+runlevel=$(set -- $(runlevel); eval "echo \$$#" )
+
+# update path so we can use bundle and rails commands
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+PORT=443
+start()
+{
+        export CLOUD_PROVIDER="<%= @cloud %>"
+        cd /var/www/blu-bootstrap
+	bundle exec rake assets:precompile RAILS_ENV=production
+	bundle exec rails server -p $PORT -e production -d
+        return 0
+}
+
+stop()
+{
+	kill -INT $(lsof -i :$PORT -t)
+}
+
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+        start)
+                start
+                ;;
+        stop)
+                stop
+                ;;
+        restart)
+                restart
+                ;;
+        *)
+                echo $"Usage: $0 {start|stop|restart}"
+                RETVAL=2
+esac
+exit $RETVAL
