@@ -9,3 +9,5 @@
 *.jpg binary
 *.war binary
 *.zip binary
+*.gz  binary
+*.tar binary
